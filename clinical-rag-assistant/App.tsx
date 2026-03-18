@@ -59,7 +59,7 @@ function createSession(): ChatSession {
 const BASE_URL = (import.meta.env.VITE_BACKEND_URL as string) || '';
 
 const App: React.FC = () => {
-  const { user, logout, canAccess } = useAuth();
+  const { user, logout, canAccess, loading } = useAuth();
   const toast = useToast();
 
   const [view, setView] = useState<AppView>('chat');
@@ -288,13 +288,17 @@ const App: React.FC = () => {
     );
   };
 
+  // ── Show Splash Screen while checking auth OR while splash animates ─
+  if (showSplash || loading) {
+    return <SplashScreen onComplete={() => setSplashVisible(false)} />;
+  }
+
   // ── If not logged in → show login ─────────────────────────────────────────
   if (!user) return <LoginPage />;
 
   return (
     <>
-      {showSplash && <SplashScreen onComplete={() => setSplashVisible(false)} />}
-      <div className={`flex h-screen text-slate-900 overflow-hidden font-sans ${darkMode ? 'dark bg-slate-900' : 'bg-slate-50'} ${showSplash ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}`}>
+      <div className={`flex h-screen text-slate-900 overflow-hidden font-sans ${darkMode ? 'dark bg-slate-900' : 'bg-slate-50'}`}>
         {isVoiceActive && <VoiceMode onClose={() => setIsVoiceActive(false)} />}
 
         {/* ── Sidebar ── */}
