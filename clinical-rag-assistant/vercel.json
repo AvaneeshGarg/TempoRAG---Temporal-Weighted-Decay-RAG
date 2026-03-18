@@ -1,6 +1,26 @@
 {
     "rewrites": [
         {
+            "source": "/health",
+            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/health"
+        },
+        {
+            "source": "/auth/(.*)",
+            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/auth/$1"
+        },
+        {
+            "source": "/query(.*)",
+            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/query$1"
+        },
+        {
+            "source": "/predict(.*)",
+            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/predict$1"
+        },
+        {
+            "source": "/search(.*)",
+            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/search$1"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
