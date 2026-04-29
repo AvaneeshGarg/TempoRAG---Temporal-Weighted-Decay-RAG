@@ -269,7 +269,9 @@ export const VoiceMode: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
           {turns.length === 0 && !interimText && (
             <div className="flex flex-col items-center justify-center py-8 text-slate-400 text-sm text-center">
-              <span className="text-2xl mb-2">🎙️</span>
+              <svg className="w-8 h-8 mb-3 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+              </svg>
               <p>Speak your clinical question and I'll respond</p>
             </div>
           )}
@@ -278,7 +280,7 @@ export const VoiceMode: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         {/* Error banner */}
         {error && (
           <div className="mx-6 mb-2 bg-rose-50 border border-rose-200 text-rose-700 text-xs p-3 rounded-xl">
-            ⚠️ {error}
+            {error}
           </div>
         )}
 

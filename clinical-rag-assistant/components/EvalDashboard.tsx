@@ -286,7 +286,7 @@ export const EvalDashboard: React.FC = () => {
 \\end{tabular}
 \\end{table}`;
         const latex = [header, rows, footer].join('\n');
-        navigator.clipboard.writeText(latex).then(() => toast.success('LaTeX table copied to clipboard ✅'));
+        navigator.clipboard.writeText(latex).then(() => toast.success('LaTeX table copied to clipboard'));
     };
 
     return (
@@ -377,7 +377,7 @@ export const EvalDashboard: React.FC = () => {
                             </span>
                             <button onClick={exportLatex}
                                 className="text-xs bg-slate-900 text-emerald-400 px-3 py-1.5 rounded-lg font-mono hover:bg-slate-800 transition-colors flex items-center gap-1.5">
-                                📋 Copy as LaTeX
+                                Copy as LaTeX
                             </button>
                         </div>
                     </div>

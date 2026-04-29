@@ -232,7 +232,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
                                 fontFamily: "'Inter', sans-serif",
                             }}
                         >
-                            {'Clinical RAG'.split('').map((char, i) => (
+                            {'NeuroGuardian'.split('').map((char, i) => (
                                 <motion.span
                                     key={i}
                                     initial={{ opacity: 0, y: 10 }}
@@ -260,7 +260,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({
                                 fontFamily: "'Inter', sans-serif",
                             }}
                         >
-                            Diagnostics Hub
+                            Clinical Intelligence
                         </motion.p>
                     </motion.div>
 

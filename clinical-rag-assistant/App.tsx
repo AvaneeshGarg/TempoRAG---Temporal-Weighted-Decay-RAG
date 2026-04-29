@@ -132,7 +132,7 @@ const App: React.FC = () => {
         const views: AppView[] = ['chat', 'predictor', 'research', 'evaluation'];
         const nextView = views[parseInt(e.key) - 1];
         if (!canAccess(nextView === 'predictor' ? 'risk' : nextView === 'evaluation' ? 'eval' : nextView as any)) {
-          toast.warn('🔒 Sign in for full access.');
+          toast.warn('Sign in for full access.');
           return;
         }
         setView(nextView);
@@ -172,7 +172,7 @@ const App: React.FC = () => {
     if (e) e.preventDefault();
     if (!input.trim() || isLoading || isStreaming) return;
 
-    if (!canAccess('chat')) { toast.warn('🔒 Sign in to access Evidence Chat.'); return; }
+    if (!canAccess('chat')) { toast.warn('Sign in to access Evidence Chat.'); return; }
 
     const userMessage: Message = { id: Date.now().toString(), role: 'user', content: input, timestamp: new Date() };
     if (messages.length === 0) setSessionTitle(activeId, input);
@@ -231,7 +231,7 @@ const App: React.FC = () => {
                   : m)
               } : s));
               const ms = evt.timings?.generate_ms;
-              if (ms) toast.success(`✅ Response in ${(ms / 1000).toFixed(1)}s · ${method.toUpperCase()}`);
+              if (ms) toast.success(`Response in ${(ms / 1000).toFixed(1)}s · ${method.toUpperCase()}`);
             } else if (evt.type === 'error') {
               setSessions(prev => prev.map(s => s.id === activeId ? {
                 ...s,
@@ -276,14 +276,14 @@ const App: React.FC = () => {
     return (
       <button
         onClick={() => {
-          if (!accessible) { toast.warn(`🔒 Sign in to access ${label}.`); return; }
+          if (!accessible) { toast.warn(`Sign in to access ${label}.`); return; }
           setView(v);
         }}
         className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium ${view === v ? 'bg-rose-600/10 text-rose-400 border border-rose-600/20' : 'text-slate-400 hover:bg-slate-800'}`}
       >
         {icon}
         <span className="flex-1 text-left">{label}</span>
-        {!accessible && <span className="text-slate-600 text-xs">🔒</span>}
+        {!accessible && <span className="text-slate-600 text-[10px] font-bold uppercase tracking-wide">Login</span>}
       </button>
     );
   };
@@ -298,18 +298,18 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className={`flex h-screen text-slate-900 overflow-hidden font-sans ${darkMode ? 'dark bg-slate-900' : 'bg-slate-50'}`}>
+      <div className={`flex h-screen text-slate-900 overflow-hidden font-sans ${darkMode ? 'dark bg-[#0f1117]' : 'bg-slate-50'}`}>
         {isVoiceActive && <VoiceMode onClose={() => setIsVoiceActive(false)} />}
 
         {/* ── Sidebar ── */}
-        <aside className={`${sidebarOpen ? 'w-80' : 'w-0'} bg-slate-900 text-white flex flex-col transition-all duration-300 ease-in-out overflow-hidden flex-shrink-0`}>
+        <aside className={`${sidebarOpen ? 'w-80' : 'w-0'} bg-slate-950 text-white flex flex-col transition-all duration-300 ease-in-out overflow-hidden flex-shrink-0`}>
           <div className="p-6 flex items-center gap-3 border-b border-slate-800">
             <div className="bg-rose-600 p-2 rounded-lg">
               <HeartIcon className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="font-bold text-lg tracking-tight">Clinical RAG</h1>
-              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Diagnostics Hub</p>
+              <h1 className="font-bold text-lg tracking-tight">NeuroGuardian</h1>
+              <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Clinical Intelligence</p>
             </div>
           </div>
 
@@ -367,7 +367,11 @@ const App: React.FC = () => {
                   <p className="text-xs font-semibold text-white truncate">{user.name}</p>
                   <p className="text-[10px] text-slate-500 capitalize">{user.role}</p>
                 </div>
-                <button onClick={() => logout()} className="text-slate-500 hover:text-rose-400 text-xs transition-colors" title="Sign out">↩</button>
+                <button onClick={() => logout()} className="text-slate-500 hover:text-rose-400 transition-colors" title="Sign out">
+                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                </button>
               </div>
             </div>
           </nav>
@@ -381,8 +385,8 @@ const App: React.FC = () => {
         </aside>
 
         {/* ── Main ── */}
-        <main className={`flex-1 flex flex-col relative min-w-0 ${darkMode ? 'bg-slate-900' : 'bg-slate-50'}`}>
-          <header className={`h-16 border-b flex items-center justify-between px-6 z-10 ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <main className={`flex-1 flex flex-col relative min-w-0 ${darkMode ? 'bg-[#0f1117]' : 'bg-slate-50'}`}>
+          <header className={`h-16 border-b flex items-center justify-between px-6 z-10 ${darkMode ? 'bg-[#161b22] border-[#30363d]' : 'bg-white border-slate-200'}`}>
             <div className="flex items-center gap-4">
               <button onClick={() => setSidebarOpen(!sidebarOpen)}
                 className={`p-1.5 rounded-md transition-colors ${darkMode ? 'hover:bg-slate-700 text-slate-400' : 'hover:bg-slate-100 text-slate-500'}`}>
@@ -407,9 +411,17 @@ const App: React.FC = () => {
             <div className="flex items-center gap-3">
               {/* Dark mode toggle */}
               <button onClick={() => setDarkMode(!darkMode)}
-                className={`p-2 rounded-lg transition-colors text-lg ${darkMode ? 'hover:bg-slate-700' : 'hover:bg-slate-100'}`}
+                className={`p-2 rounded-lg transition-colors ${darkMode ? 'hover:bg-slate-700 text-slate-400 hover:text-slate-200' : 'hover:bg-slate-100 text-slate-500 hover:text-slate-700'}`}
                 title={darkMode ? 'Light mode' : 'Dark mode'}>
-                {darkMode ? '☀️' : '🌙'}
+                {darkMode ? (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                  </svg>
+                )}
               </button>
 
               {view === 'chat' && (
@@ -485,7 +497,7 @@ const App: React.FC = () => {
           </div>
 
           {view === 'chat' && (
-            <div className={`p-6 border-t ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-100'}`}>
+            <div className={`p-6 border-t ${darkMode ? 'bg-[#161b22] border-[#30363d]' : 'bg-white border-slate-100'}`}>
               <form onSubmit={handleSubmit} className="max-w-4xl mx-auto flex gap-3 relative">
                 <div className="flex-1 relative">
                   <QuerySuggest value={input} onSelect={v => { setInput(v); setTimeout(() => inputRef.current?.focus(), 50); }} />

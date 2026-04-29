@@ -72,7 +72,7 @@ export const MedicalSearch: React.FC = () => {
     setFavs(prev => {
       const next = prev.includes(title) ? prev.filter(t => t !== title) : [...prev, title];
       saveFavs(next);
-      toast.success(prev.includes(title) ? 'Removed from favourites' : '⭐ Saved to favourites');
+      toast.success(prev.includes(title) ? 'Removed from favourites' : 'Saved to favourites');
       return next;
     });
   };
@@ -179,7 +179,7 @@ export const MedicalSearch: React.FC = () => {
 
             {result.synthesis?.includes('unavailable') && (
               <div className="bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-2xl text-sm">
-                ⚠️ LLM synthesis unavailable — check that <code className="bg-amber-100 px-1.5 py-0.5 rounded text-xs">GROQ_API_KEY</code> is set in <code className="bg-amber-100 px-1.5 py-0.5 rounded text-xs">.env</code>.
+                LLM synthesis unavailable — check that <code className="bg-amber-100 px-1.5 py-0.5 rounded text-xs">GROQ_API_KEY</code> is set in <code className="bg-amber-100 px-1.5 py-0.5 rounded text-xs">.env</code>.
               </div>
             )}
 
@@ -199,7 +199,7 @@ export const MedicalSearch: React.FC = () => {
                     </button>
                   ))}
                   {favs.length > 0 && (
-                    <span className="ml-auto text-xs text-slate-400 flex items-center gap-1">⭐ {favs.length} saved</span>
+                    <span className="ml-auto text-xs text-slate-400">{favs.length} saved</span>
                   )}
                 </div>
 
@@ -231,9 +231,11 @@ export const MedicalSearch: React.FC = () => {
                                 {article.year > 0 && <span className="ml-2 text-[10px] text-slate-400 font-mono">{article.year}</span>}
                               </div>
                               <button onClick={() => toggleFav(article.title)}
-                                className={`text-xl flex-shrink-0 transition-transform hover:scale-125 ${isFav ? 'opacity-100' : 'opacity-30 hover:opacity-70'}`}
+                                className={`flex-shrink-0 transition-colors p-1 rounded ${isFav ? 'text-rose-500' : 'text-slate-300 hover:text-slate-500'}`}
                                 title={isFav ? 'Remove from favourites' : 'Save to favourites'}>
-                                ⭐
+                                <svg className="w-4 h-4" fill={isFav ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                                </svg>
                               </button>
                             </div>
                             <h4 className="font-bold text-slate-800 mb-2">{article.title}</h4>

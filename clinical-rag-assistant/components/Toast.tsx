@@ -27,11 +27,11 @@ export const useToast = () => {
 };
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
-const icons: Record<ToastType, string> = {
-    success: '✅',
-    error: '❌',
-    warn: '⚠️',
-    info: 'ℹ️',
+const dotColors: Record<ToastType, string> = {
+    success: 'bg-emerald-400',
+    error: 'bg-rose-400',
+    warn: 'bg-amber-400',
+    info: 'bg-blue-400',
 };
 
 const colors: Record<ToastType, string> = {
@@ -86,7 +86,7 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
                             className={`pointer-events-auto flex items-start gap-3 px-4 py-3 rounded-xl border bg-gradient-to-r backdrop-blur-xl shadow-xl ${colors[t.type]}`}
                             onClick={() => dismiss(t.id)}
                         >
-                            <span className="text-base flex-shrink-0 mt-0.5">{icons[t.type]}</span>
+                            <span className={`w-2 h-2 rounded-full flex-shrink-0 mt-1.5 ${dotColors[t.type]}`} />
                             <p className="text-sm font-medium leading-snug flex-1">{t.message}</p>
                             <button className="flex-shrink-0 text-current opacity-50 hover:opacity-100 transition-opacity text-xs mt-0.5">✕</button>
                         </motion.div>

@@ -90,16 +90,16 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message, isStreami
           >
             <button onClick={handleCopy}
               className="flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition-colors px-2 py-1 rounded-lg hover:bg-slate-100">
-              {copied ? '✅ Copied' : '📋 Copy'}
+              {copied ? 'Copied' : 'Copy'}
             </button>
             <button onClick={() => handleFeedback('up')}
-              className={`text-lg transition-transform hover:scale-110 ${feedback === 'up' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}>
-              👍
+              className={`text-[11px] px-2 py-1 rounded-lg transition-colors ${feedback === 'up' ? 'text-emerald-600 bg-emerald-50' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'}`}>
+              Helpful
             </button>
             <button onClick={() => handleFeedback('down')}
-              className={`text-lg transition-transform hover:scale-110 ${feedback === 'down' ? 'opacity-100' : 'opacity-40 hover:opacity-100'}`}
+              className={`text-[11px] px-2 py-1 rounded-lg transition-colors ${feedback === 'down' ? 'text-rose-600 bg-rose-50' : 'text-slate-400 hover:text-slate-600 hover:bg-slate-100'}`}
               title="Saves to local feedback log">
-              👎
+              Not helpful
             </button>
             {feedback && (
               <span className="text-[10px] text-slate-400 italic">
