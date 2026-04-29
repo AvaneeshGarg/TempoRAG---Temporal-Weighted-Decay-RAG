@@ -2,23 +2,23 @@
     "rewrites": [
         {
             "source": "/health",
-            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/health"
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/health"
         },
         {
             "source": "/auth/(.*)",
-            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/auth/$1"
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/auth/$1"
         },
         {
             "source": "/query(.*)",
-            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/query$1"
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/query$1"
         },
         {
             "source": "/predict(.*)",
-            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/predict$1"
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/predict$1"
         },
         {
             "source": "/search(.*)",
-            "destination": "https://clinical-rag-api-production-aa00.up.railway.app/search$1"
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/search$1"
         },
         {
             "source": "/(.*)",
