@@ -21,6 +21,14 @@
             "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/search$1"
         },
         {
+            "source": "/metrics",
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/metrics"
+        },
+        {
+            "source": "/evaluate",
+            "destination": "https://neuroguardian-app.grayriver-2b3e6bfb.southeastasia.azurecontainerapps.io/evaluate"
+        },
+        {
             "source": "/(.*)",
             "destination": "/index.html"
         }
